@@ -14,6 +14,7 @@ grunt
 
 ## Used ##
 - Sass (SCSS)
+- Bootstrap 3
 - Haml
 - Grunt, include this plugins:
   - grunt-contrib-haml
