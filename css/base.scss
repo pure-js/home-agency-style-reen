@@ -17,13 +17,17 @@ $mostly-desaturated-dark-blue: #506a85;
     list-style: none;
     text-transform: uppercase;
     display: inline-block;
-    font-family: 'Source Sans Pro';
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 15px;
     font-weight: 700;
   }
 
   &__link {
     color: $mostly-desaturated-dark-blue;
-    font-family: 'Source Sans Pro';
+    font-family: 'Source Sans Pro', sans-serif;
   }
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
 }

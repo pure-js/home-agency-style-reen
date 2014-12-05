@@ -9,13 +9,17 @@
   list-style: none;
   text-transform: uppercase;
   display: inline-block;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 15px;
   font-weight: 700;
 }
 .main-menu__link {
   color: #506a85;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
 }
 
 /*# sourceMappingURL=base.css.map */
