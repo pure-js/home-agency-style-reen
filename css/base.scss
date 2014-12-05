@@ -3,6 +3,8 @@
 $white: #fff;
 $mostly-desaturated-dark-blue: #506a85;
 $light-grayish-blue: #f5f7fb;
+$strong-cyan: #00bc9c;
+$dark-cyan: #17a78b;
 
 
 // Styles
@@ -54,8 +56,28 @@ $light-grayish-blue: #f5f7fb;
   font-weight: 900;
   font-size: 78px;
   text-align: center;
+  margin: 0;
 }
 
 .main-heading-box {
   background: url("../img/heading-bg.png");
+  padding: 280px 0 300px;
+}
+
+.button {
+  border: 0;
+  outline: 0;
+}
+
+.button-primary {
+  background: $strong-cyan;
+  color: $white;
+  padding: 25px 70px;
+  font-family: 'Source Sans Pro';
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: .45px;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 2px 2px $dark-cyan;
 }
