@@ -5,4 +5,17 @@
   display: block;
 }
 
+.main-menu__item {
+  list-style: none;
+  text-transform: uppercase;
+  display: inline-block;
+  font-family: 'Source Sans Pro';
+  font-size: 15px;
+  font-weight: 700;
+}
+.main-menu__link {
+  color: #506a85;
+  font-family: 'Source Sans Pro';
+}
+
 /*# sourceMappingURL=base.css.map */
