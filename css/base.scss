@@ -1,6 +1,8 @@
 // Variables
 
+$white: #fff;
 $mostly-desaturated-dark-blue: #506a85;
+$light-grayish-blue: #f5f7fb;
 
 
 // Styles
@@ -37,6 +39,23 @@ $mostly-desaturated-dark-blue: #506a85;
   }
 }
 
-.lato {
+.top-line {
+  background: $light-grayish-blue;
+}
+
+.top-nav-box {
+  padding: 36px 0px;
+}
+
+.main-heading {
+  color: $white;
+  text-transform: uppercase;
   font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 78px;
+  text-align: center;
+}
+
+.main-heading-box {
+  background: url("../img/heading-bg.png");
 }
