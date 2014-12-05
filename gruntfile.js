@@ -12,7 +12,7 @@ module.exports = function(grunt){
                     style: 'expanded'
                 },
                 files: {
-                    'css/base.css': 'css/base.scss'
+                    'build/base.css': 'css/base.scss'
                 }
             }
         },
@@ -29,7 +29,7 @@ module.exports = function(grunt){
                 tasks: ['sass']
             },
             cssmin: {
-                files: 'css/*.css',
+                files: 'build/*.css',
                 tasks: ['cssmin']
             },
             haml: {
@@ -49,7 +49,7 @@ module.exports = function(grunt){
         },
         cssmin: {
             'dist': {
-                'src': ['css/base.css'],
+                'src': ['build/base.css'],
                 'dest': 'build/base.min.css'
             }
         }
