@@ -1,11 +1,9 @@
-# Sass cache
-.sass-cache/*
 
 # Node modules
-node_modules/*
+node_modules
 
 # WebStrom files
-.idea/*
+.idea
 
 # Build
-build/*
+build
