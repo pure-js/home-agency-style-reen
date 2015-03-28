@@ -1,20 +1,19 @@
 {
-    "name": "oklis-image-carousel",
-    "version": "0.0.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/IamEmpty/html-layout-website"
-    },
-    "author": "IamEmpty",
-    "license": "GPLv3",
-    "bugs": {
-        "url": "https://github.com/IamEmpty/html-layout-website/issues"
-    },
-    "devDependencies": {
-        "grunt": "^0.4.5",
-        "grunt-contrib-haml": "^0.2.0",
-        "grunt-contrib-sass": "^0.8.1",
-        "grunt-contrib-watch": "^0.6.1",
-        "grunt-yui-compressor": "^0.3.3"
-    }
+  "name": "home-agency-style-reen",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IamEmpty/home-agency-style-reen"
+  },
+  "author": "IamEmpty",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/IamEmpty/home-agency-style-reen/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  },
+  "dependencies": {
+    "jade": "^1.9.2"
+  }
 }
