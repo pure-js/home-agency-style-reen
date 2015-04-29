@@ -1,10 +1,37 @@
 home-agency-style-reen
 ======================
 
-## For beginning ##
-```
-npm install
-bower install
-gulp
-```
+# If you haven't node.js, gulp and bower
 
+## Install NVM
+
+    sudo apt-get update
+    sudo apt-get install build-essential libssl-dev
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.25.0/install.sh | bash
+
+## Reopen terminal, and install node.js
+
+    nvm install stable
+    nvm alias default stable
+
+## Install bower & gulp
+
+    npm install -g bower
+    npm install -g gulp
+
+After this go to the next step.
+
+# If you have node.js, gulp and bower
+Go to the project directory
+
+    cd project-directory
+
+Run the following commands
+
+    npm install
+    bower install
+    gulp
+
+And open following url, if this does not happen automatically
+
+    localhost:8783/
