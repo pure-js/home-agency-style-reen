@@ -32,4 +32,5 @@ Run the following commands
     bower install
     gulp
 
-And open [localhost:8783/](localhost:8783/), if this does not happen automatically
+And open [localhost:8783/], if this does not happen automatically
+[localhost:8783/]: localhost:8783/
