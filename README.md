@@ -34,4 +34,4 @@ Run the following commands
 
 And open following url, if this does not happen automatically
 
-    localhost:8783/
+    [localhost:8783/](localhost:8783/)
