@@ -11,7 +11,10 @@
     "url": "https://github.com/IamEmpty/home-agency-style-reen/issues"
   },
   "devDependencies": {
-    "gulp": "^3.8.11"
+    "gulp": "^3.8.11",
+    "gulp-jade": "^1.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-stylus": "^2.0.1"
   },
   "dependencies": {
     "jade": "^1.9.2",

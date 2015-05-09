@@ -3,7 +3,7 @@
 node_modules
 npm-debug.log
 
-# WebStrom files
+# WebStorm files
 .idea
 
 # Build
