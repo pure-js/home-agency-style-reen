@@ -4,14 +4,18 @@ var gulp = require('gulp'),
 
 var paths = {
   jade: 'index.jade',
-  stylus: 'stylesheets/main.styl'
+  jadeWatch: 'blocks/**/*.jade',
+  stylus: 'stylesheets/main.styl',
+  stylusWatch: 'blocks/**/*.styl',
+  images: 'img/*.png',
+  build: 'build'
 };
 
 // Get one .styl file and render
 gulp.task('css', function() {
   gulp.src(paths.stylus)
     .pipe(stylus())
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest(paths.build + '/css'));
 });
 
 gulp.task('html', function() {
@@ -19,14 +23,21 @@ gulp.task('html', function() {
     .pipe(jade({
       pretty: true
     }))
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest(paths.build))
+});
+
+gulp.task('copy', ['copy-images']);
+
+gulp.task('copy-images', function() {
+  gulp.src(paths.images)
+    .pipe(gulp.dest(paths.build + '/img'))
 });
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-  gulp.watch(paths.stylus, ['css']);
-  gulp.watch(paths.jade, ['html']);
+  gulp.watch(paths.stylusWatch, ['css']);
+  gulp.watch(paths.jadeWatch, ['html']);
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['html', 'css', 'watch']);
+gulp.task('default', ['html', 'css', 'watch', 'copy']);

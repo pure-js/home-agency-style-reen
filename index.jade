@@ -1,64 +1,68 @@
 doctype html
 html(lang= 'en')
   head
-    meta(charset='utf-8')
+    meta(charset= 'utf-8')
     title Reen
     meta(name= 'viewport', content= 'width=device-width, initial-scale=1')
     link(rel= 'stylesheet', href= 'css/main.css')
     link(rel= 'stylesheet', href= 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
     link(href= 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel= 'stylesheet', type= 'text/css')
   body
-    .top-line
+    header
+      .top-line
+        .container
+          .row
+            .col-md-12
+              .email info@reen.com
+              .phone +00 (123) 456 78 90
+              .social-buttons
+      .top-nav-box
+        .container
+          .row
+            .col-md-2
+              a.logotype(href= '/')
+
+            .col-md-8
+              include blocks/main-menu/main-menu
+            .col-md-2
+              .search
+    main
+      .main-heading-box
+        .container
+          .row
+            .col-md-12
+              h1.main-heading Made for designers
+              .description Create your online portfolio in minutes with the professionally and lovingly designed REEN website template. Customize your site with versatile and easy to use features
+              button.button.button-primary Get started now
+
       .container
         .row
           .col-md-12
-            .email info@reen.com
-            .phone +00 (123) 456 78 90
-            .social-buttons
-    .top-nav-box
-      .container
-        .row
-          .col-md-2
-            a.logotype(href= '/')
-
-          .col-md-8
-            ul.main-menu
-              - var mainMenu = {}
-              - mainMenu.items = []
-              - mainMenu.items[0] = {}
-                - mainMenu.items[0].value = 'Home'
-              - mainMenu.items[1] = {}
-                - mainMenu.items[1].value = 'Portfolio'
-              - mainMenu.items[2] = {}
-                - mainMenu.items[2].value = 'Blog'
-              - mainMenu.items[3] = {}
-                - mainMenu.items[3].value = 'Pages'
-              - mainMenu.items[4] = {}
-                - mainMenu.items[4].value = 'Features'
-              - mainMenu.items[5] = {}
-                - mainMenu.items[5].value = 'Mega menu'
-              - mainMenu.items[6] = {}
-                - mainMenu.items[6].value = 'Contact'
-
-              each val, index in mainMenu.items
-                li.main-menu__item
-                  a.link.main-menu__link(href= '/')= val.value
-
-          .col-md-2
-            .search
-
-    .main-heading-box
-      .container
-        .row
-          .col-md-12
-            h1.main-heading Made for designers
-            .description Create your online portfolio in minutes with the professionally and lovingly designed REEN website template. Customize your site with versatile and easy to use features
-            button.button.button-primary Get started now
-
-    .container
-      .row
-        .col-md-12
-          p Beautiful. Clean. Responsive. REEN is a high-quality solution for those who want a beautiful website in no time. It's fully responsive and will adapt itself to any mobile device. iPad, iPhone, Android, it doesn't matter. Your content will always looks its absolute best.
-          span.glyphicon.glyphicon-heart-empty
-          span.glyphicon.glyphicon-heart-empty
-          span.glyphicon.glyphicon-heart-empty
+            p Beautiful. Clean. Responsive. REEN is a high-quality solution for those who want a beautiful website in no time. It's fully responsive and will adapt itself to any mobile device. iPad, iPhone, Android, it doesn't matter. Your content will always looks its absolute best.
+            span.glyphicon.glyphicon-heart-empty
+            span.glyphicon.glyphicon-heart-empty
+            span.glyphicon.glyphicon-star-empty
+    footer
+      .footer-top
+        .container
+          .row
+            .col-md-3
+              p Who we are
+              p Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.
+              More about us
+            .col-md-3
+              p Latest works
+            .col-md-3
+              p Get in touch
+              p Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.
+              p 84 Street, City, State 24813+00 (123) 456 78 90info@reen.com
+            .col-md-3
+              p Free updates
+              p Conecus iure posae volor remped modis aut lor volor accabora incim resto explabo.
+      .footer-bottom
+        .container
+          .row
+            .col-md-3
+              p © 2014 REEN. All rights reserved.
+            .col-md-6.col-md-offset-3
+              include blocks/dot-separated-menu/dot-separated-menu
