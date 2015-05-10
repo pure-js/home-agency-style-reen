@@ -4,9 +4,15 @@ var gulp = require('gulp'),
 
 var paths = {
   jade: 'index.jade',
-  jadeWatch: 'blocks/**/*.jade',
+  jadeWatch: [
+    'blocks/**/*.jade',
+    'index.jade'
+  ],
   stylus: 'stylesheets/main.styl',
-  stylusWatch: 'blocks/**/*.styl',
+  stylusWatch: [
+    'blocks/**/*.styl',
+    'stylesheets/main.styl'
+  ],
   images: 'img/*.png',
   build: 'build'
 };
