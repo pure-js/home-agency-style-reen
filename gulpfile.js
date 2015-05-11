@@ -13,7 +13,7 @@ var paths = {
     'blocks/**/*.styl',
     'stylesheets/main.styl'
   ],
-  images: 'img/*.png',
+  images: 'img/**/*.{png,jpg}',
   build: 'build'
 };
 
