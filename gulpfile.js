@@ -3,10 +3,10 @@ var gulp = require('gulp'),
   stylus = require('gulp-stylus');
 
 var paths = {
-  jade: 'index.jade',
+  jade: 'pages/*.jade',
   jadeWatch: [
     'blocks/**/*.jade',
-    'index.jade'
+    'pages/*.jade'
   ],
   stylus: 'stylesheets/main.styl',
   stylusWatch: [
