@@ -14,6 +14,7 @@ var paths = {
     'stylesheets/main.styl'
   ],
   images: 'img/**/*.{png,jpg}',
+  css: 'bower_components/normalize.css/normalize.css',
   build: 'build'
 };
 
@@ -32,11 +33,16 @@ gulp.task('html', function() {
     .pipe(gulp.dest(paths.build))
 });
 
-gulp.task('copy', ['copy-images']);
+gulp.task('copy', ['copy-images', 'copy-css']);
 
 gulp.task('copy-images', function() {
   return gulp.src(paths.images)
     .pipe(gulp.dest(paths.build + '/img'))
+});
+
+gulp.task('copy-css', function() {
+  return gulp.src(paths.css)
+    .pipe(gulp.dest(paths.build + '/css'))
 });
 
 // Rerun the task when a file changes

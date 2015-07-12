@@ -4,9 +4,9 @@ html(lang= 'en')
     meta(charset= 'utf-8')
     title Reen
     meta(name= 'viewport', content= 'width=device-width, initial-scale=1')
-    link(rel= 'stylesheet', href= 'css/main.css')
-    link(rel= 'stylesheet', href= 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
-    link(href= 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel= 'stylesheet', type= 'text/css')
+    link(href= 'css/normalize.css', rel= 'stylesheet')
+    link(href= 'css/main.css', rel= 'stylesheet')
+    link(href= 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel='stylesheet', type='text/css')
   body
     header
       .top-line
@@ -54,11 +54,11 @@ html(lang= 'en')
         .container
           .row
             .col-md-3
-              p Who we are
-              p Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.
-              More about us
+              h3.heading__h3 Who we are
+              p.plain-text_inverse Magnis modipsae voloratati andigen daepeditem quiate re porem que aut labor. Laceaque eictemperum quiae sitiorem rest non restibusaes maio es dem tumquam.
+              a.read-more(href= '#') More about us
             .col-md-3
-              p Latest works
+              h3.heading__h3 Latest works
               a(href= '#')
                 img(src= 'img/previews/desktop.jpg')
               a(href= '#')
@@ -68,12 +68,12 @@ html(lang= 'en')
               a(href= '#')
                 img(src= 'img/previews/grand-hotel.jpg')
             .col-md-3
-              p Get in touch
-              p Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.
-              p 84 Street, City, State 24813+00 (123) 456 78 90info@reen.com
+              h3.heading__h3 Get in touch
+              p.plain-text_inverse Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.
+              p.plain-text_inverse 84 Street, City, State 24813+00 (123) 456 78 90info@reen.com
             .col-md-3
-              p Free updates
-              p Conecus iure posae volor remped modis aut lor volor accabora incim resto explabo.
+              h3.heading__h3 Free updates
+              p.plain-text_inverse Conecus iure posae volor remped modis aut lor volor accabora incim resto explabo.
       .footer-bottom
         .container
           .row
