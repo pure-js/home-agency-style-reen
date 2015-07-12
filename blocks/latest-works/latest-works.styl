@@ -1,0 +1,29 @@
+.latest-works
+  &:before
+    display: table;
+    content: " ";
+  &:after
+    display: table;
+    content: " ";
+    clear both
+
+.latest-works__column
+  margin 0
+  overflow hidden
+  float left
+  padding 0 5px 0 0
+  &:nth-child(even)
+    padding 0
+
+.latest-works__item
+  display block
+  position relative
+  min-height 1px
+  width 125px
+  height 85px
+  padding 0 0 5px 0
+  &:last-child
+    padding 0
+
+.latest-works__item img
+  display block
