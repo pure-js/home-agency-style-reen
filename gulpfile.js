@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   jade = require('gulp-jade'),
-  stylus = require('gulp-stylus');
+  stylus = require('gulp-stylus'),
+  plumber = require('gulp-plumber');
 
 var paths = {
   jade: 'pages/*.jade',
@@ -21,12 +22,14 @@ var paths = {
 // Get one .styl file and render
 gulp.task('css', function() {
   return gulp.src(paths.stylus)
+    .pipe(plumber())
     .pipe(stylus())
     .pipe(gulp.dest(paths.build + '/css'));
 });
 
 gulp.task('html', function() {
   return gulp.src(paths.jade)
+    .pipe(plumber())
     .pipe(jade({
       pretty: true
     }))
