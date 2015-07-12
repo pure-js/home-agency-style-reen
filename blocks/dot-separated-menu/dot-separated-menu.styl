@@ -5,9 +5,17 @@
 .dot-separted-menu__item
   float left
   display block
-  padding 0 28px 0 0
+  margin 0 14px 0 0
   &:last-child
     padding 0
+    &:after
+      content none
+  &:after
+    content '.'
+    color #707e8c
+    margin 0 0 0 14px
+    position relative
+    top -3px
 
 .dot-separted-menu__link
   font-family 'Source Sans Pro', sans-serif

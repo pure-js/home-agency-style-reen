@@ -19,13 +19,13 @@ var paths = {
 
 // Get one .styl file and render
 gulp.task('css', function() {
-  gulp.src(paths.stylus)
+  return gulp.src(paths.stylus)
     .pipe(stylus())
     .pipe(gulp.dest(paths.build + '/css'));
 });
 
 gulp.task('html', function() {
-  gulp.src(paths.jade)
+  return gulp.src(paths.jade)
     .pipe(jade({
       pretty: true
     }))
@@ -35,7 +35,7 @@ gulp.task('html', function() {
 gulp.task('copy', ['copy-images']);
 
 gulp.task('copy-images', function() {
-  gulp.src(paths.images)
+  return gulp.src(paths.images)
     .pipe(gulp.dest(paths.build + '/img'))
 });
 
