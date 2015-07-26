@@ -3,7 +3,7 @@ home-agency-style-reen
 
 ## If you haven't node.js, gulp and bower
 
-Install NVM
+Install NVM on Ubuntu
 
     sudo apt-get update
     sudo apt-get install build-essential libssl-dev
