@@ -11,3 +11,6 @@ build
 
 # Bower
 bower_components
+
+# Deploy
+.publish

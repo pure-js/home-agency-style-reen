@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
   jade = require('gulp-jade'),
   stylus = require('gulp-stylus'),
-  plumber = require('gulp-plumber');
+  plumber = require('gulp-plumber'),
+  ghPages = require('gulp-gh-pages');
 
 var paths = {
   jade: 'pages/*.jade',
@@ -52,6 +53,11 @@ gulp.task('copy-css', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.stylusWatch, ['css']);
   gulp.watch(paths.jadeWatch, ['html']);
+});
+
+gulp.task('deploy', function() {
+  return gulp.src(paths.build + '/**/*')
+    .pipe(ghPages());
 });
 
 // The default task (called when you run `gulp` from cli)
