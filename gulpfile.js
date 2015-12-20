@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   stylus = require('gulp-stylus'),
   plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
+  minifyCss = require('gulp-minify-css'),
   ghPages = require('gulp-gh-pages');
 
 var paths = {
@@ -27,7 +28,7 @@ gulp.task('css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
     .pipe(stylus())
-    .pipe(gulp.dest(paths.build + 'css'));
+    .pipe(gulp.dest(paths.build + 'css/'));
 });
 
 gulp.task('html', function() {
@@ -36,14 +37,15 @@ gulp.task('html', function() {
     .pipe(jade({
       pretty: true
     }))
-    .pipe(gulp.dest(paths.build))
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('minify-css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
     .pipe(stylus())
-    .pipe(gulp.dest(paths.dist + 'css'));
+    .pipe(minifyCss())
+    .pipe(gulp.dest(paths.dist + 'css/'));
 });
 
 gulp.task('minify-html', function() {
@@ -51,31 +53,21 @@ gulp.task('minify-html', function() {
     .pipe(plumber())
     .pipe(jade())
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(paths.dist))
+    .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('copy', ['copy-images', 'copy-css']);
+gulp.task('copy', ['copy-images']);
 
 gulp.task('copy-images', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.build + 'img/'))
+    .pipe(gulp.dest(paths.build + 'img/'));
 });
 
-gulp.task('copy-css', function() {
-  return gulp.src(paths.css)
-    .pipe(gulp.dest(paths.build + 'css/'))
-});
-
-gulp.task('copy-to-dist', ['copy-images-to-dist', 'copy-css-to-dist']);
+gulp.task('copy-to-dist', ['copy-images-to-dist']);
 
 gulp.task('copy-images-to-dist', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dist + 'img/'))
-});
-
-gulp.task('copy-css-to-dist', function() {
-  return gulp.src(paths.css)
-    .pipe(gulp.dest(paths.dist + 'css/'))
+    .pipe(gulp.dest(paths.dist + 'img/'));
 });
 
 // Rerun the task when a file changes
@@ -84,8 +76,8 @@ gulp.task('watch', function() {
   gulp.watch(paths.jadeWatch, ['html']);
 });
 
-gulp.task('deploy', ['minify-html'], function() {
-  return gulp.src(paths.build + '**/*')
+gulp.task('deploy', ['dist'], function() {
+  return gulp.src(paths.dist + '**/*')
     .pipe(ghPages());
 });
 
