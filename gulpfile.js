@@ -6,7 +6,9 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
   minifyCss = require('gulp-minify-css'),
-  ghPages = require('gulp-gh-pages');
+  spritesmith = require('gulp.spritesmith'),
+  ghPages = require('gulp-gh-pages'),
+  merge = require('merge-stream');;
 
 var paths = {
   jade: 'pages/*.jade',
@@ -16,7 +18,7 @@ var paths = {
   ],
   stylus: [
     'stylesheets/main.styl',
-    'stylesheets/above-the-top.styl'
+    'stylesheets/above-the-fold.styl'
   ],
   stylusWatch: [
     'blocks/**/*.styl',
@@ -57,13 +59,13 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
 
-gulp.task('minify-html', function() {
+gulp.task('minify-html', ['minify-css'], function() {
   return gulp.src(paths.jade)
     .pipe(plumber())
     .pipe(jade())
     // Css from file to inline
-    .pipe(replace(/<link href="a.css" rel="stylesheet">/, function(s) {
-      var style = fs.readFileSync('dist/css/above-the-top.css', 'utf8');
+    .pipe(replace(/<link href="above-the-fold.css" rel="stylesheet">/, function(s) {
+      var style = fs.readFileSync('dist/css/above-the-fold.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
     }))
     .pipe(htmlmin({collapseWhitespace: true}))
@@ -84,6 +86,30 @@ gulp.task('copy-images-to-dist', function() {
     .pipe(gulp.dest(paths.dist + 'img/'));
 });
 
+gulp.task('sprite', function () {
+  // Generate our spritesheet
+  var spriteData = gulp.src('img/previews/*.jpg')
+    .pipe(spritesmith({
+      imgName: '../img/sprites/sprite.png',
+      cssName: 'sprite.styl'
+    }));
+
+  // Pipe image stream through image optimizer and onto disk
+  var imgStream = spriteData.img
+    // DEV: We must buffer our stream into a Buffer for `imagemin`
+    // .pipe(buffer())
+    // .pipe(imagemin())
+    .pipe(gulp.dest('./sprites/'));
+
+  // Pipe CSS stream through CSS optimizer and onto disk
+  var cssStream = spriteData.css
+    // .pipe(csso())
+    .pipe(gulp.dest('stylesheets/'));
+
+  // Return a merged stream to handle both `end` events
+  return merge(imgStream, cssStream);
+});
+
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   gulp.watch(paths.stylusWatch, ['css']);
@@ -97,5 +123,5 @@ gulp.task('deploy', ['dist'], function() {
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('build', ['html', 'css', 'watch', 'copy']);
-gulp.task('dist', ['minify-html', 'minify-css', 'copy-to-dist']);
+gulp.task('dist', ['minify-html', 'minify-css', 'copy-to-dist', 'sprite']);
 gulp.task('default', ['build']);

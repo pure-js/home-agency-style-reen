@@ -1,0 +1,114 @@
+/*
+Stylus variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon_home_width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon_home = x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet = width height image $spritesheet_sprites;
+*/
+$desktop_name = 'desktop';
+$desktop_x = 0px;
+$desktop_y = 0px;
+$desktop_offset_x = 0px;
+$desktop_offset_y = 0px;
+$desktop_width = 125px;
+$desktop_height = 85px;
+$desktop_total_width = 250px;
+$desktop_total_height = 170px;
+$desktop_image = '../img/sprites/sprite.png';
+$desktop = 0px 0px 0px 0px 125px 85px 250px 170px '../img/sprites/sprite.png' 'desktop';
+$grand_hotel_name = 'grand-hotel';
+$grand_hotel_x = 125px;
+$grand_hotel_y = 0px;
+$grand_hotel_offset_x = -125px;
+$grand_hotel_offset_y = 0px;
+$grand_hotel_width = 125px;
+$grand_hotel_height = 85px;
+$grand_hotel_total_width = 250px;
+$grand_hotel_total_height = 170px;
+$grand_hotel_image = '../img/sprites/sprite.png';
+$grand_hotel = 125px 0px -125px 0px 125px 85px 250px 170px '../img/sprites/sprite.png' 'grand-hotel';
+$mobile_name = 'mobile';
+$mobile_x = 0px;
+$mobile_y = 85px;
+$mobile_offset_x = 0px;
+$mobile_offset_y = -85px;
+$mobile_width = 125px;
+$mobile_height = 85px;
+$mobile_total_width = 250px;
+$mobile_total_height = 170px;
+$mobile_image = '../img/sprites/sprite.png';
+$mobile = 0px 85px 0px -85px 125px 85px 250px 170px '../img/sprites/sprite.png' 'mobile';
+$vinyl_name = 'vinyl';
+$vinyl_x = 125px;
+$vinyl_y = 85px;
+$vinyl_offset_x = -125px;
+$vinyl_offset_y = -85px;
+$vinyl_width = 125px;
+$vinyl_height = 85px;
+$vinyl_total_width = 250px;
+$vinyl_total_height = 170px;
+$vinyl_image = '../img/sprites/sprite.png';
+$vinyl = 125px 85px -125px -85px 125px 85px 250px 170px '../img/sprites/sprite.png' 'vinyl';
+$spritesheet_width = 250px;
+$spritesheet_height = 170px;
+$spritesheet_image = '../img/sprites/sprite.png';
+$spritesheet_sprites = $desktop $grand_hotel $mobile $vinyl;
+$spritesheet = 250px 170px '../img/sprites/sprite.png' $spritesheet_sprites;
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  spriteWidth($icon_home)
+}
+
+.icon-email {
+  sprite($icon_email)
+}
+*/
+spriteWidth($sprite) {
+  width: $sprite[4];
+}
+
+spriteHeight($sprite) {
+  height: $sprite[5];
+}
+
+spritePosition($sprite) {
+  background-position: $sprite[2] $sprite[3];
+}
+
+spriteImage($sprite) {
+  background-image: url($sprite[8]);
+}
+
+sprite($sprite) {
+  spriteImage($sprite)
+  spritePosition($sprite)
+  spriteWidth($sprite)
+  spriteHeight($sprite)
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of Stylus
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+sprites($spritesheet_sprites);
+*/
+sprites($sprites) {
+  for $sprite in $sprites {
+    $sprite_name = $sprite[9];
+    .{$sprite_name} {
+      sprite($sprite);
+    }
+  }
+}
