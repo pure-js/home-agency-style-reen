@@ -1,4 +1,6 @@
 var gulp = require('gulp'),
+  fs = require('fs'),
+  replace = require('gulp-replace'),
   jade = require('gulp-jade'),
   stylus = require('gulp-stylus'),
   plumber = require('gulp-plumber'),
@@ -12,7 +14,10 @@ var paths = {
     'blocks/**/*.jade',
     'pages/*.jade'
   ],
-  stylus: 'stylesheets/main.styl',
+  stylus: [
+    'stylesheets/main.styl',
+    'stylesheets/above-the-top.styl'
+  ],
   stylusWatch: [
     'blocks/**/*.styl',
     'stylesheets/main.styl'
@@ -27,7 +32,9 @@ var paths = {
 gulp.task('css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
-    .pipe(stylus())
+    .pipe(stylus({
+      'include css': true
+    }))
     .pipe(gulp.dest(paths.build + 'css/'));
 });
 
@@ -43,7 +50,9 @@ gulp.task('html', function() {
 gulp.task('minify-css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
-    .pipe(stylus())
+    .pipe(stylus({
+      'include css': true
+    }))
     .pipe(minifyCss())
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
@@ -52,6 +61,11 @@ gulp.task('minify-html', function() {
   return gulp.src(paths.jade)
     .pipe(plumber())
     .pipe(jade())
+    // Css from file to inline
+    .pipe(replace(/<link href="a.css" rel="stylesheet">/, function(s) {
+      var style = fs.readFileSync('dist/css/above-the-top.css', 'utf8');
+      return '<style>\n' + style + '\n</style>';
+    }))
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(paths.dist));
 });
