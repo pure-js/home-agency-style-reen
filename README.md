@@ -7,7 +7,7 @@ Install NVM on Ubuntu
 
     sudo apt-get update
     sudo apt-get install build-essential libssl-dev
-    curl https://raw.githubusercontent.com/creationix/nvm/v0.25.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
 
 Reopen terminal, and install node.js
 
