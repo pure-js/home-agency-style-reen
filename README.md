@@ -11,8 +11,8 @@ Install NVM on Ubuntu
 
 Reopen terminal, and install node.js
 
-    nvm install stable
-    nvm alias default stable
+    nvm install node
+    nvm alias default node
 
 Install bower & gulp
 
