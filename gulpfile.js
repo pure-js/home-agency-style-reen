@@ -5,10 +5,10 @@ var gulp = require('gulp'),
   stylus = require('gulp-stylus'),
   plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
-  minifyCss = require('gulp-minify-css'),
+  cssnano = require('gulp-cssnano'),
   spritesmith = require('gulp.spritesmith'),
   ghPages = require('gulp-gh-pages'),
-  merge = require('merge-stream');;
+  merge = require('merge-stream');
 
 var paths = {
   jade: 'pages/*.jade',
@@ -55,7 +55,7 @@ gulp.task('minify-css', function() {
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
 
