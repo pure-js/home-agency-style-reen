@@ -38,7 +38,7 @@ gulp.task('css', function() {
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(gulp.dest(paths.build + 'css/'));
+    .pipe(gulp.dest(paths.build + 'css'));
 });
 
 gulp.task('html', function() {
@@ -57,7 +57,7 @@ gulp.task('minify-css', function() {
       'include css': true
     }))
     .pipe(cssnano())
-    .pipe(gulp.dest(paths.dist + 'css/'));
+    .pipe(gulp.dest(paths.dist + 'css'));
 });
 
 gulp.task('minify-html', ['minify-css'], function() {
@@ -65,7 +65,7 @@ gulp.task('minify-html', ['minify-css'], function() {
     .pipe(plumber())
     .pipe(jade())
     // Css from file to inline
-    .pipe(replace(/<link href="above-the-fold.css" rel="stylesheet">/, function(s) {
+    .pipe(replace(/<link href="css\/above-the-fold.css" rel="stylesheet">/, function(s) {
       var style = fs.readFileSync('dist/css/above-the-fold.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
     }))
@@ -77,14 +77,14 @@ gulp.task('copy', ['copy-images']);
 
 gulp.task('copy-images', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.build + 'img/'));
+    .pipe(gulp.dest(paths.build + 'img'));
 });
 
 gulp.task('copy-to-dist', ['copy-images-to-dist']);
 
 gulp.task('copy-images-to-dist', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dist + 'img/'));
+    .pipe(gulp.dest(paths.dist + 'img'));
 });
 
 gulp.task('csslint', ['build'], function() {
@@ -108,12 +108,12 @@ gulp.task('sprite', function () {
     // DEV: We must buffer our stream into a Buffer for `imagemin`
     // .pipe(buffer())
     // .pipe(imagemin())
-    .pipe(gulp.dest('./sprites/'));
+    .pipe(gulp.dest('./sprites'));
 
   // Pipe CSS stream through CSS optimizer and onto disk
   var cssStream = spriteData.css
     // .pipe(csso())
-    .pipe(gulp.dest('stylesheets/'));
+    .pipe(gulp.dest('stylesheets'));
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
