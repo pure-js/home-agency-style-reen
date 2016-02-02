@@ -8,6 +8,7 @@ var gulp = require('gulp'),
   cssnano = require('gulp-cssnano'),
   spritesmith = require('gulp.spritesmith'),
   ghPages = require('gulp-gh-pages'),
+  csslint = require('gulp-csslint'),
   merge = require('merge-stream');
 
 var paths = {
@@ -85,6 +86,14 @@ gulp.task('copy-images-to-dist', function() {
   return gulp.src(paths.images)
     .pipe(gulp.dest(paths.dist + 'img/'));
 });
+
+gulp.task('csslint', ['build'], function() {
+  gulp.src([paths.build + 'css/*.css'])
+    .pipe(csslint())
+    .pipe(csslint.reporter());
+});
+
+gulp.task('test', ['csslint']);
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
