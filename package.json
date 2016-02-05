@@ -27,7 +27,9 @@
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
+    "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.7",
+    "karma-safari-launcher": "^0.1.1",
     "merge-stream": "^1.0.0",
     "phantomcss": "^0.11.1",
     "quixote": "^0.11.0"
@@ -40,7 +42,8 @@
   "homepage": "https://iamempty.github.io/home-agency-style-reen/",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp build"
+    "pretes": "gulp build",
+    "test": "gulp test"
   },
   "keywords": [
     "jade",

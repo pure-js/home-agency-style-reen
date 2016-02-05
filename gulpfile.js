@@ -10,7 +10,8 @@ var gulp = require('gulp'),
   ghPages = require('gulp-gh-pages'),
   csslint = require('gulp-csslint'),
   merge = require('merge-stream'),
-  sourcemaps = require('gulp-sourcemaps');
+  sourcemaps = require('gulp-sourcemaps'),
+  server = require('karma').Server;
 
 var paths = {
   jade: 'pages/*.jade',
@@ -40,7 +41,7 @@ gulp.task('css', function() {
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write(''))
     .pipe(gulp.dest(paths.build + 'css'));
 });
 
@@ -120,6 +121,16 @@ gulp.task('sprite', function () {
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  new server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Rerun the task when a file changes
