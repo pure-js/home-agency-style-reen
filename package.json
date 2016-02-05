@@ -23,8 +23,14 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.3.0",
     "gulp.spritesmith": "^6.2.0",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
     "merge-stream": "^1.0.0",
-    "phantomcss": "^0.11.1"
+    "phantomcss": "^0.11.1",
+    "quixote": "^0.11.0"
   },
   "dependencies": {
     "jade": "^1.11.0",
