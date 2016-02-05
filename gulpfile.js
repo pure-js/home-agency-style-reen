@@ -9,7 +9,8 @@ var gulp = require('gulp'),
   spritesmith = require('gulp.spritesmith'),
   ghPages = require('gulp-gh-pages'),
   csslint = require('gulp-csslint'),
-  merge = require('merge-stream');
+  merge = require('merge-stream'),
+  sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
   jade: 'pages/*.jade',
@@ -35,9 +36,11 @@ var paths = {
 gulp.task('css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(stylus({
       'include css': true
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.build + 'css'));
 });
 
