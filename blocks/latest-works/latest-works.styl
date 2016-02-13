@@ -1,10 +1,10 @@
 .latest-works
   &:before
-    display: table;
-    content: " ";
+    display table
+    content " "
   &:after
-    display: table;
-    content: " ";
+    display: table
+    content " "
     clear both
 
 .latest-works__column
@@ -25,5 +25,12 @@
   &:last-child
     padding 0
 
-.latest-works__item img
-  display block
+.latest-works__img
+  background-image url($desktop_image)
+
+sprite($sprite)
+  spritePosition($sprite)
+  spriteWidth($sprite)
+  spriteHeight($sprite)
+
+sprites($spritesheet_sprites)

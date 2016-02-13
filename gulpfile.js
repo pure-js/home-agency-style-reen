@@ -5,10 +5,13 @@ var gulp = require('gulp'),
   stylus = require('gulp-stylus'),
   plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
-  minifyCss = require('gulp-minify-css'),
+  cssnano = require('gulp-cssnano'),
   spritesmith = require('gulp.spritesmith'),
   ghPages = require('gulp-gh-pages'),
-  merge = require('merge-stream');;
+  csslint = require('gulp-csslint'),
+  merge = require('merge-stream'),
+  sourcemaps = require('gulp-sourcemaps'),
+  server = require('karma').Server;
 
 var paths = {
   jade: 'pages/*.jade',
@@ -34,10 +37,12 @@ var paths = {
 gulp.task('css', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(gulp.dest(paths.build + 'css/'));
+    .pipe(sourcemaps.write(''))
+    .pipe(gulp.dest(paths.build + 'css'));
 });
 
 gulp.task('html', function() {
@@ -55,8 +60,8 @@ gulp.task('minify-css', function() {
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(minifyCss())
-    .pipe(gulp.dest(paths.dist + 'css/'));
+    .pipe(cssnano())
+    .pipe(gulp.dest(paths.dist + 'css'));
 });
 
 gulp.task('minify-html', ['minify-css'], function() {
@@ -64,7 +69,7 @@ gulp.task('minify-html', ['minify-css'], function() {
     .pipe(plumber())
     .pipe(jade())
     // Css from file to inline
-    .pipe(replace(/<link href="above-the-fold.css" rel="stylesheet">/, function(s) {
+    .pipe(replace(/<link href="css\/above-the-fold.css" rel="stylesheet">/, function(s) {
       var style = fs.readFileSync('dist/css/above-the-fold.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
     }))
@@ -76,15 +81,23 @@ gulp.task('copy', ['copy-images']);
 
 gulp.task('copy-images', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.build + 'img/'));
+    .pipe(gulp.dest(paths.build + 'img'));
 });
 
 gulp.task('copy-to-dist', ['copy-images-to-dist']);
 
 gulp.task('copy-images-to-dist', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dist + 'img/'));
+    .pipe(gulp.dest(paths.dist + 'img'));
 });
+
+gulp.task('csslint', ['build'], function() {
+  gulp.src([paths.build + 'css/*.css'])
+    .pipe(csslint())
+    .pipe(csslint.reporter());
+});
+
+gulp.task('test', ['csslint']);
 
 gulp.task('sprite', function () {
   // Generate our spritesheet
@@ -99,15 +112,25 @@ gulp.task('sprite', function () {
     // DEV: We must buffer our stream into a Buffer for `imagemin`
     // .pipe(buffer())
     // .pipe(imagemin())
-    .pipe(gulp.dest('./sprites/'));
+    .pipe(gulp.dest('./sprites'));
 
   // Pipe CSS stream through CSS optimizer and onto disk
   var cssStream = spriteData.css
     // .pipe(csso())
-    .pipe(gulp.dest('stylesheets/'));
+    .pipe(gulp.dest('stylesheets'));
 
   // Return a merged stream to handle both `end` events
   return merge(imgStream, cssStream);
+});
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  new server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Rerun the task when a file changes
