@@ -12,6 +12,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "normalize.css": "~3.0.3"
+    "normalize.css": "~4.1.1"
   }
 }

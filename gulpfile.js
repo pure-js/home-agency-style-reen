@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
   fs = require('fs'),
   replace = require('gulp-replace'),
-  jade = require('gulp-jade'),
+  pug = require('gulp-pug'),
   stylus = require('gulp-stylus'),
   plumber = require('gulp-plumber'),
   htmlmin = require('gulp-htmlmin'),
@@ -14,10 +14,10 @@ var gulp = require('gulp'),
   server = require('karma').Server;
 
 var paths = {
-  jade: 'pages/*.jade',
-  jadeWatch: [
-    'blocks/**/*.jade',
-    'pages/*.jade'
+  pug: 'pages/*.pug',
+  pugWatch: [
+    'blocks/**/*.pug',
+    'pages/*.pug'
   ],
   stylus: [
     'stylesheets/main.styl',
@@ -46,9 +46,9 @@ gulp.task('css', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src(paths.jade)
+  return gulp.src(paths.pug)
     .pipe(plumber())
-    .pipe(jade({
+    .pipe(pug({
       pretty: true
     }))
     .pipe(gulp.dest(paths.build));
@@ -65,9 +65,9 @@ gulp.task('minify-css', function() {
 });
 
 gulp.task('minify-html', ['minify-css'], function() {
-  return gulp.src(paths.jade)
+  return gulp.src(paths.pug)
     .pipe(plumber())
-    .pipe(jade())
+    .pipe(pug())
     // Css from file to inline
     .pipe(replace(/<link href="css\/above-the-fold.css" rel="stylesheet">/, function(s) {
       var style = fs.readFileSync('dist/css/above-the-fold.css', 'utf8');
@@ -136,7 +136,7 @@ gulp.task('test', function (done) {
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   gulp.watch(paths.stylusWatch, ['css']);
-  gulp.watch(paths.jadeWatch, ['html']);
+  gulp.watch(paths.pugWatch, ['html']);
 });
 
 gulp.task('deploy', ['dist'], function() {
