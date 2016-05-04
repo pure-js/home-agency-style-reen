@@ -12,6 +12,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "normalize.css": "~4.1.1"
+    "normalize.css": "~4.1.1",
+    "stylus-grid-constructor": "*"
   }
 }

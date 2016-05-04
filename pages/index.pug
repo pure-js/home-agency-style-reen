@@ -21,10 +21,12 @@ html(lang= 'en')
       .top-nav-box
         .container
           .row
-            .col-md-2
+            .col-xs-12.col-md-2
               a.logotype(href= '#')
-            .col-md-8
-              include ../blocks/main-menu/main-menu.pug
+            .col-xs-12.col-md-8
+              nav.main-menu
+                each val in ['Home', 'Portfolio', 'Blog', 'Pages', 'Features', 'Mega menu', 'Contact']
+                  a.link.main-menu__link.main-menu__item(href= '#')= val
             .col-md-2
               .search
     main
