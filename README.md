@@ -1,5 +1,4 @@
-home-agency-style-reen
-======================
+# Home agency style Reen
 
 ## If you haven't node.js, gulp and bower
 
@@ -7,7 +6,7 @@ Install NVM on Ubuntu
 
     sudo apt-get update
     sudo apt-get install build-essential libssl-dev
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
 
 Reopen terminal, and install node.js
 
@@ -32,7 +31,7 @@ Run the following commands
     bower install
     gulp
 
-And open build/inde.html in a browser.
+And open build/index.html in a browser.
 
 ## For deploy
 
