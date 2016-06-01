@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
   fs = require('fs'),
   replace = require('gulp-replace'),
   pug = require('gulp-pug'),
@@ -8,7 +8,6 @@ var gulp = require('gulp'),
   cssnano = require('gulp-cssnano'),
   spritesmith = require('gulp.spritesmith'),
   ghPages = require('gulp-gh-pages'),
-  csslint = require('gulp-csslint'),
   merge = require('merge-stream'),
   sourcemaps = require('gulp-sourcemaps'),
   server = require('karma').Server;
@@ -91,11 +90,18 @@ gulp.task('copy-images-to-dist', function() {
     .pipe(gulp.dest(paths.dist + 'img'));
 });
 
-gulp.task('csslint', ['build'], function() {
-  gulp.src([paths.build + 'css/*.css'])
-    .pipe(csslint())
-    .pipe(csslint.reporter());
+gulp.task('lint-css', ['build'], function lintCssTask() {
+  const gulpStylelint = require('gulp-stylelint');
+
+  return gulp
+    .src(paths.build + 'css/*.css')
+    .pipe(gulpStylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
 });
+
 
 gulp.task('test', ['csslint']);
 
