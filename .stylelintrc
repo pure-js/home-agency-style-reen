@@ -2,11 +2,10 @@
   "rules": {
     "block-no-empty": null,
     "color-no-invalid-hex": true,
+    "declaration-no-important": true,
     "declaration-colon-space-after": "always",
-    "indentation": ["tab", {
-      "except": ["value"]
-    }],
+    "indentation": [2],
     "max-empty-lines": 2,
-    "unit-whitelist": ["em", "rem", "%", "s"]
+    "unit-whitelist": ["em", "rem", "%", "px"]
   }
 }
