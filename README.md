@@ -1,5 +1,4 @@
-home-agency-style-reen
-======================
+# Home agency style reen
 
 ## If you haven't node.js, gulp and bower
 
