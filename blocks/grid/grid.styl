@@ -9,30 +9,4 @@
     content " "
     clear both
 
-.row
-  margin-right -15px
-  margin-left -15px
-  &:before,
-  &:after
-    display table
-    content " "
-    clear both
-
-
-grid($amount, $prefix, $padding)
-  $list = ''
-
-  for $num in (1..$amount)
-    {$prefix}-{$num}
-      width (100% / $amount * $num)
-      padding-right $padding
-      padding-left $padding
-    $list = $list + ', ' + $prefix + '-' + $num
-
-  {$list}
-    position relative
-    min-height 1px
-    float left
-    box-sizing border-box
-
-grid(12, '.col-md', 15px)
+grid-constructor(12, 15px)

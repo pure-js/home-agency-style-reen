@@ -5,7 +5,7 @@ html(lang= 'en')
     title Reen
     meta(name= 'viewport', content= 'width=device-width, initial-scale=1')
     link(href= 'css/above-the-fold.css', rel= 'stylesheet')
-    link(href= 'css/main.css', rel= 'stylesheet', media='bogus')
+    link(href= 'css/main.css', rel= 'stylesheet', media=' bogus')
     link(href= 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel='stylesheet', media='bogus')
   body
     header
@@ -14,17 +14,19 @@ html(lang= 'en')
           .row
             .col-md-12
               span.glyphicon.glyphicon-mail
-              .header-email info@reen.com
+              a.header-email(href='mailto:info@reen.com') info@reen.com
               span.glyphicon.glyphicon-phone
-              .header-phone +00 (123) 456 78 90
+              a.header-phone(href='tel:1-123-456-7890') +1 (123) 456 78 90
               .header-social-buttons
       .top-nav-box
         .container
           .row
-            .col-md-2
-              a.logotype(href= '/')
-            .col-md-8
-              include ../blocks/main-menu/main-menu
+            .col-xs-12.col-md-2
+              a.logotype(href= '#')
+            .col-xs.col-md-8
+              nav.main-menu
+                each val in ['Home', 'Portfolio', 'Blog', 'Pages', 'Features', 'Mega menu', 'Contact']
+                  a.link.main-menu__link.main-menu__item(href= '#')= val
             .col-md-2
               .search
     main
@@ -114,16 +116,22 @@ html(lang= 'en')
             .col-md-3
               h3.heading__h3 Get in touch
               p.plain-text_inverse Doloreiur quia commolu ptatemp dolupta oreprerum tibusam eumenis et consent accullignis dentibea autem inisita.
-              p.plain-text_inverse 84 Street, City, State 24813+00 (123) 456 78 90info@reen.com
+              p.plain-text_inverse
+                | 84 Street, City, State 24813
+                a(href='tel:00-123-456-78-90') +00 (123) 456 78 90
+                a(href='mailto:info@reen.com') info@reen.com
             .col-md-3
               h3.heading__h3 Free updates
               p.plain-text_inverse Conecus iure posae volor remped modis aut lor volor accabora incim resto explabo.
+              form
+                input(type='email', placeholder='Enter your email address')
+                button(type='submit') Subscribe
       .footer-bottom
         .container
           .row
             .col-md-6
-              p.footer-copyright © 2014 REEN. All rights reserved.
+              p.footer-copyright © 2016 REEN. All rights reserved.
             .col-md-6
-              include ../blocks/dot-separated-menu/dot-separated-menu
+              include ../blocks/dot-separated-menu/dot-separated-menu.pug
     link(href= 'css/main.css', rel= 'stylesheet')
     link(href= 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel='stylesheet')
