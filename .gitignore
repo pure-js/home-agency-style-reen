@@ -3,13 +3,11 @@
 node_modules
 npm-debug.log
 
-# WebStorm files
+# WebStorm
 .idea
 
-# Build
+# Build & Distribute
 build
-
-# Distribute
 dist
 
 # Bower
