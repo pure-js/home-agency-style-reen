@@ -24,7 +24,11 @@ const paths = {
 };
 
 function getTask(task) {
-  return require('./gulp-tasks/' + task)(gulp, plugins, paths);
+  return require('./gulp-tasks/' + task)(gulp, plugins, paths, merge);
+}
+
+function getTaskCustomDist(task, destination) {
+  return require('./gulp-tasks/' + task)(gulp, plugins, paths, destination);
 }
 
 // Get one .styl file and render
@@ -45,7 +49,12 @@ gulp.task('lint-css', ['build'], function lintCssTask() {
 
 gulp.task('test', ['csslint']);
 
-// gulp.task('sprite', getTask('sprite'));
+gulp.task('sprite', getTask('sprite'));
+
+gulp.task('copy', ['copy-images']);
+gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
+gulp.task('copy-to-dist', ['copy-images-to-dist']);
+gulp.task('copy-images-to-dist', getTaskCustomDist('copy-images', paths.dist));
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
