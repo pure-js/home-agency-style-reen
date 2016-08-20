@@ -24,26 +24,14 @@ const paths = {
 };
 
 function getTask(task) {
-  return require('./gulp-tasks/' + task)(gulp, plugins);
+  return require('./gulp-tasks/' + task)(gulp, plugins, paths);
 }
 
 // Get one .styl file and render
 gulp.task('css', getTask('css'));
 gulp.task('html', getTask('html'));
 gulp.task('minify-css', getTask('minify-css'));
-
-gulp.task('minify-html', ['minify-css'], function() {
-  return gulp.src(paths.pug)
-    .pipe($.plumber())
-    .pipe($.pug())
-    // Css from file to inline
-    .pipe($.replace(/<link href="css\/above-the-fold.css" rel="stylesheet">/, function(s) {
-      var style = fs.readFileSync('dist/css/above-the-fold.css', 'utf8');
-      return '<style>\n' + style + '\n</style>';
-    }))
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(paths.dist));
-});
+gulp.task('minify-html', ['minify-css'], getTask('minify-html'));
 
 gulp.task('copy', ['copy-images']);
 
@@ -74,7 +62,7 @@ gulp.task('lint-css', ['build'], function lintCssTask() {
 
 gulp.task('test', ['csslint']);
 
-gulp.task('sprite', getTask('sprite'));
+// gulp.task('sprite', getTask('sprite'));
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
