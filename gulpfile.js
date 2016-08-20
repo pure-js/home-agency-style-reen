@@ -6,16 +6,16 @@ const gulp = require('gulp'),
 const paths = {
   pug: 'pages/*.pug',
   pugWatch: [
-    'blocks/**/*.pug',
-    'pages/*.pug'
+    'src/blocks/**/*.pug',
+    'src/pages/*.pug'
   ],
   stylus: [
-    'stylesheets/main.styl',
-    'stylesheets/above-the-fold.styl'
+    'src/stylesheets/main.styl',
+    'src/stylesheets/above-the-fold.styl'
   ],
   stylusWatch: [
-    'blocks/**/*.styl',
-    'stylesheets/main.styl'
+    'src/blocks/**/*.styl',
+    'src/stylesheets/main.styl'
   ],
   images: 'img/**/*.{png,jpg}',
   css: 'bower_components/normalize.css/normalize.css',
@@ -33,32 +33,15 @@ gulp.task('html', getTask('html'));
 gulp.task('minify-css', getTask('minify-css'));
 gulp.task('minify-html', ['minify-css'], getTask('minify-html'));
 
-gulp.task('copy', ['copy-images']);
-
-gulp.task('copy-images', function() {
-  return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.build + 'img'));
-});
-
-gulp.task('copy-to-dist', ['copy-images-to-dist']);
-
-gulp.task('copy-images-to-dist', function() {
-  return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dist + 'img'));
-});
-
 gulp.task('lint-css', ['build'], function lintCssTask() {
-  const gulpStylelint = require('gulp-stylelint');
-
   return gulp
     .src(paths.build + 'css/*.css')
-    .pipe(gulpStylelint({
+    .pipe(plugins.stylelint({
       reporters: [
         {formatter: 'string', console: true}
       ]
     }));
 });
-
 
 gulp.task('test', ['csslint']);
 
