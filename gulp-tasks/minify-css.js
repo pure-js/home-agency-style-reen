@@ -1,5 +1,5 @@
-module.exports = function (gulp, plugins, paths) {
-  return function () {
+module.exports = (gulp, plugins, paths) =>
+  function () {
     gulp.src(paths.stylus)
       .pipe(plugins.plumber())
       .pipe(plugins.stylus({
@@ -8,4 +8,3 @@ module.exports = function (gulp, plugins, paths) {
       .pipe(plugins.cssnano())
       .pipe(gulp.dest(paths.dist + 'css'));
   };
-};

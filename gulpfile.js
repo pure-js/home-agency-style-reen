@@ -62,10 +62,10 @@ gulp.task('watch', function() {
   gulp.watch(paths.pugWatch, ['html']);
 });
 
-gulp.task('deploy', ['dist'], function() {
-  return gulp.src(paths.dist + '**/*')
+gulp.task('deploy', ['dist'], () =>
+  gulp.src(paths.dist + '**/*')
     .pipe(ghPages());
-});
+);
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('build', ['html', 'css', 'watch', 'copy']);

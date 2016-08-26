@@ -1,5 +1,5 @@
-module.exports = function (gulp, plugins, paths) {
-  return function () {
+module.exports = (gulp, plugins, paths) =>
+  function () {
     gulp.src(paths.pug)
       .pipe(plugins.plumber())
       .pipe(plugins.pug({
@@ -7,4 +7,3 @@ module.exports = function (gulp, plugins, paths) {
       }))
       .pipe(gulp.dest(paths.build));
   };
-};

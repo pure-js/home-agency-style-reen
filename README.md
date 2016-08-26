@@ -1,26 +1,16 @@
 # Home agency style Reen
 
-## If you haven't node.js, gulp and bower
+## Prerequisite
 
-Install NVM on Ubuntu
-
-    sudo apt-get update
-    sudo apt-get install build-essential libssl-dev
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
-
-Reopen terminal, and install node.js
-
-    nvm install node
-    nvm alias default node
-
-Install bower & gulp
+Install Node.js and npm if they are not already on your machine. You can do it using NVM
+Also Install bower & gulp
 
     npm install -g bower
     npm install -g gulp
 
 Then go to the next step.
 
-## If you have installed node.js, gulp and bower
+## Run project
 Go to the project directory
 
     cd project-directory

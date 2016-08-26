@@ -1,6 +1,5 @@
-module.exports = function (gulp, plugins, paths) {
-  return function () {
+module.exports = (gulp, plugins, paths) =>
+  function () {
     gulp.src(paths.images)
       .pipe(gulp.dest(paths.build + 'img'));
   };
-};

@@ -1,4 +1,4 @@
-module.exports = function (gulp, plugins, paths) {
+module.exports = (gulp, plugins, paths) =>
   return function () {
     gulp.src(paths.pug)
       .pipe(plugins.plumber())
@@ -11,4 +11,3 @@ module.exports = function (gulp, plugins, paths) {
       .pipe(plugins.htmlmin({collapseWhitespace: true}))
       .pipe(gulp.dest(paths.dist));
   };
-};
