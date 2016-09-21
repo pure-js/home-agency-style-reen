@@ -1,6 +1,7 @@
 const gulp = require('gulp'),
   fs = require('fs'),
   merge = require('merge-stream'),
+  kss = require('kss'),
   plugins = require('gulp-load-plugins')();
 
 const paths = {
@@ -20,7 +21,8 @@ const paths = {
   images: 'img/**/*.{png,jpg}',
   css: 'bower_components/normalize.css/normalize.css',
   build: 'build/',
-  dist: 'dist/'
+  dist: 'dist/',
+  styleGuide: 'styleguide'
 };
 
 function getTask(task) {
@@ -62,10 +64,32 @@ gulp.task('watch', function() {
   gulp.watch(paths.pugWatch, ['html']);
 });
 
-gulp.task('deploy', ['dist'], () =>
-  gulp.src(paths.dist + '**/*')
+let styleGuide = {
+  source: [
+    paths.theme.sass
+  ],
+  destination: paths.styleGuide,
+
+  // The css and js paths are URLs, like '/misc/jquery.js'.
+  // The following paths are relative to the generated style guide.
+  css: [
+    'src/blocks/**/*.styl'
+  ],
+  js: [
+  ],
+
+  homepage: 'homepage.md',
+  title: 'Zen 7.x-6.x Style Guide'
+};
+
+gulp.task('styleguide', function() {
+  return kss(styleGuide);
+});
+
+gulp.task('deploy', ['dist'], function() {
+  return gulp.src(paths.dist + '**/*')
     .pipe(ghPages());
-);
+});
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('build', ['html', 'css', 'watch', 'copy']);
