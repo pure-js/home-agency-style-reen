@@ -1,5 +1,5 @@
 module.exports = (gulp, plugins, paths) =>
-  return function () {
+  function () {
     gulp.src(paths.pug)
       .pipe(plugins.plumber())
       .pipe(plugins.pug())

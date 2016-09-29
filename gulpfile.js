@@ -37,9 +37,20 @@ function getTaskCustomDist(task, destination) {
 gulp.task('css', getTask('css'));
 gulp.task('html', getTask('html'));
 gulp.task('minify-css', getTask('minify-css'));
-gulp.task('minify-html', ['minify-css'], getTask('minify-html'));
+gulp.task('minify-html', gulp.series('minify-css'), getTask('minify-html'));
 
-gulp.task('lint-css', ['build'], function lintCssTask() {
+// Rerun the task when a file changes
+function watch() {
+  gulp.watch(paths.stylusWatch, 'css');
+  gulp.watch(paths.pugWatch, 'html');
+});
+
+gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
+gulp.task('copy', gulp.series('copy-images'));
+
+gulp.task('build', gulp.series('html', 'css', 'watch', 'copy'));
+
+gulp.task('lint-css', gulp.series('build'), function lintCssTask() {
   return gulp
     .src(paths.build + 'css/*.css')
     .pipe(plugins.stylelint({
@@ -49,49 +60,19 @@ gulp.task('lint-css', ['build'], function lintCssTask() {
     }));
 });
 
-gulp.task('test', ['csslint']);
+gulp.task('test', gulp.series('lint-css'));
 
 gulp.task('sprite', getTask('sprite'));
 
-gulp.task('copy', ['copy-images']);
-gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
-gulp.task('copy-to-dist', ['copy-images-to-dist']);
 gulp.task('copy-images-to-dist', getTaskCustomDist('copy-images', paths.dist));
+gulp.task('copy-to-dist', gulp.series('copy-images-to-dist'));
 
-// Rerun the task when a file changes
-gulp.task('watch', function() {
-  gulp.watch(paths.stylusWatch, ['css']);
-  gulp.watch(paths.pugWatch, ['html']);
-});
+gulp.task('dist', gulp.series('minify-html', 'minify-css', 'copy-to-dist', 'sprite'));
 
-let styleGuide = {
-  source: [
-    paths.theme.sass
-  ],
-  destination: paths.styleGuide,
-
-  // The css and js paths are URLs, like '/misc/jquery.js'.
-  // The following paths are relative to the generated style guide.
-  css: [
-    'src/blocks/**/*.styl'
-  ],
-  js: [
-  ],
-
-  homepage: 'homepage.md',
-  title: 'Zen 7.x-6.x Style Guide'
-};
-
-gulp.task('styleguide', function() {
-  return kss(styleGuide);
-});
-
-gulp.task('deploy', ['dist'], function() {
+gulp.task('deploy', gulp.series('dist', function() {
   return gulp.src(paths.dist + '**/*')
     .pipe(ghPages());
-});
+}));
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('build', ['html', 'css', 'watch', 'copy']);
-gulp.task('dist', ['minify-html', 'minify-css', 'copy-to-dist', 'sprite']);
-gulp.task('default', ['build']);
+gulp.task('default', gulp.series('build'));
