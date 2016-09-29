@@ -40,9 +40,9 @@ gulp.task('minify-css', getTask('minify-css'));
 gulp.task('minify-html', gulp.series('minify-css'), getTask('minify-html'));
 
 // Rerun the task when a file changes
-function watch() {
-  gulp.watch(paths.stylusWatch, 'css');
-  gulp.watch(paths.pugWatch, 'html');
+gulp.task('watch', function() {
+  gulp.watch(paths.stylusWatch, gulp.series('css'));
+  gulp.watch(paths.pugWatch, gulp.series('html'));
 });
 
 gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
