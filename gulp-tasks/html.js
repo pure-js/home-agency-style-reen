@@ -6,5 +6,5 @@ module.exports = (gulp, plugins, paths) =>
         pretty: true
       }))
       .pipe(gulp.dest(paths.build));
-      done();
+    done();
   };

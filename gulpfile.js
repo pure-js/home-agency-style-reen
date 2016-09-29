@@ -5,7 +5,7 @@ const gulp = require('gulp'),
   plugins = require('gulp-load-plugins')();
 
 const paths = {
-  pug: 'pages/*.pug',
+  pug: 'src/pages/*.pug',
   pugWatch: [
     'src/blocks/**/*.pug',
     'src/pages/*.pug'
@@ -37,7 +37,7 @@ function getTaskCustomDist(task, destination) {
 gulp.task('css', getTask('css'));
 gulp.task('html', getTask('html'));
 gulp.task('minify-css', getTask('minify-css'));
-gulp.task('minify-html', gulp.series('minify-css'), getTask('minify-html'));
+gulp.task('minify-html', getTask('minify-html'));
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
@@ -48,7 +48,7 @@ gulp.task('watch', function() {
 gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
 gulp.task('copy', gulp.series('copy-images'));
 
-gulp.task('build', gulp.series('html', 'css', 'watch', 'copy'));
+gulp.task('build', gulp.series('html', 'css', 'copy', 'watch'));
 
 gulp.task('lint-css', gulp.series('build'), function lintCssTask() {
   return gulp
