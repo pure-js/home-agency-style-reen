@@ -6,8 +6,8 @@ npm-debug.log
 # WebStorm
 .idea
 
-# Build & Distribute
-build
+# Dev & Distribution
+.tmp
 dist
 
 # Bower

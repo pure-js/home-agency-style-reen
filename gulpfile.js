@@ -1,5 +1,4 @@
 const gulp = require('gulp'),
-  fs = require('fs'),
   merge = require('merge-stream'),
   kss = require('kss'),
   plugins = require('gulp-load-plugins')();
@@ -20,7 +19,7 @@ const paths = {
   ],
   images: 'img/**/*.{png,jpg}',
   css: 'bower_components/normalize.css/normalize.css',
-  build: 'build/',
+  dev: '.tmp/',
   dist: 'dist/',
   styleGuide: 'styleguide'
 };
@@ -45,14 +44,14 @@ gulp.task('watch', function() {
   gulp.watch(paths.pugWatch, gulp.series('html'));
 });
 
-gulp.task('copy-images', getTaskCustomDist('copy-images', paths.build));
+gulp.task('copy-images', getTaskCustomDist('copy-images', paths.dev));
 gulp.task('copy', gulp.series('copy-images'));
 
-gulp.task('build', gulp.series('html', 'css', 'copy', 'watch'));
+gulp.task('dev', gulp.series('html', 'css', 'copy', 'watch'));
 
-gulp.task('lint-css', gulp.series('build'), function lintCssTask() {
+gulp.task('lint-css', gulp.series('dev'), function lintCssTask() {
   return gulp
-    .src(paths.build + 'css/*.css')
+    .src(paths.dev + 'css/*.css')
     .pipe(plugins.stylelint({
       reporters: [
         {formatter: 'string', console: true}
@@ -75,4 +74,4 @@ gulp.task('deploy', gulp.series('dist', function() {
 }));
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', gulp.series('build'));
+gulp.task('default', gulp.series('dev'));

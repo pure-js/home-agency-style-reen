@@ -2,7 +2,7 @@ gulp.task('copy', ['copy-images']);
 
 gulp.task('copy-images', function() {
   return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.build + 'img'));
+    .pipe(gulp.dest(paths.dev + 'img'));
 });
 
 gulp.task('copy-to-dist', ['copy-images-to-dist']);

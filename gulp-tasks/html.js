@@ -5,6 +5,6 @@ module.exports = (gulp, plugins, paths) =>
       .pipe(plugins.pug({
         pretty: true
       }))
-      .pipe(gulp.dest(paths.build));
+      .pipe(gulp.dest(paths.dev));
     done();
   };
