@@ -1,14 +1,14 @@
 {
   "name": "home-agency-style-reen",
-  "version": "0.0.2",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IamEmpty/home-agency-style-reen.git"
+    "url": "git+https://github.com/pure-js/home-agency-style-reen.git"
   },
-  "author": "IamEmpty",
+  "author": "pur-js",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IamEmpty/home-agency-style-reen/issues"
+    "url": "https://github.com/pure-js/home-agency-style-reen/issues"
   },
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
@@ -47,7 +47,7 @@
     "clean": "rm -rf node_modules bower_components build dist .publish"
   },
   "keywords": [
-    "jade",
+    "pug",
     "stylus"
   ]
 }
