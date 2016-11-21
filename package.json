@@ -11,6 +11,7 @@
     "url": "https://github.com/pure-js/home-agency-style-reen/issues"
   },
   "devDependencies": {
+    "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.0",
     "gulp-gh-pages": "^0.5.4",
@@ -41,9 +42,8 @@
   "homepage": "https://oure-js.github.io/home-agency-style-reen/",
   "main": "gulpfile.js",
   "scripts": {
-    "pretes": "gulp build",
-    "test": "gulp test",
-    "clean": "rm -rf node_modules bower_components build dist .publish"
+    "pretes": "gulp dist",
+    "test": "gulp test"
   },
   "keywords": [
     "pug",

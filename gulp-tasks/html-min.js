@@ -13,7 +13,10 @@ module.exports = (gulp, plugins, paths) =>
         collapseWhitespace: true,
         removeAttributeQuotes: true,
         removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true
+        removeStyleLinkTypeAttributes: true,
+        removeComments: true,
+        removeOptionalTags: true,
+        minifyURLs: true
       }))
       .pipe(gulp.dest(paths.dist));
     done();

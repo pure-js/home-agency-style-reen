@@ -1,3 +1,3 @@
-module.exports = (gulp, plugins, paths) => () =>
+module.exports = (gulp, plugins, paths, destination = paths.dev) => () =>
   gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dev + 'img'))
+    .pipe(gulp.dest(destination + 'img'))

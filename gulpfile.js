@@ -1,5 +1,6 @@
 const gulp = require('gulp'),
   merge = require('merge-stream'),
+  del = require('del'),
   plugins = require('gulp-load-plugins')();
 
 const paths = {
@@ -36,6 +37,8 @@ gulp.task('html', getTask('html'));
 gulp.task('css-min', getTask('css-min'));
 gulp.task('html-min', getTask('html-min'));
 
+const clean = () => del([ '.tmp', 'dist', '.publish' ]);
+
 // Rerun the task when a file changes
 function watch() {
   gulp.watch(paths.stylusWatch, gulp.series('css'));
@@ -55,6 +58,7 @@ gulp.task('lint-css', function lintCssTask() {
 });
 
 exports.watch = watch;
+exports.clean = clean;
 
 gulp.task('test', gulp.series('lint-css'));
 
@@ -63,14 +67,16 @@ gulp.task('sprite', getTask('sprite'));
 gulp.task('copy-images-to-dist', getTaskCustomDist('copy-images', paths.dist));
 gulp.task('copy-to-dist', gulp.series('copy-images-to-dist'));
 
-gulp.task('dist', gulp.series('html-min', 'css-min', 'copy-to-dist', 'sprite'));
+const dist = gulp.series('css-min', 'html-min', 'copy-to-dist', 'sprite');
 
-gulp.task('deploy', gulp.series('dist', () =>
+gulp.task('deploy', () =>
   gulp.src(paths.dist + '**/*')
     .pipe(plugins.ghPages())
-));
+);
 
 const dev = gulp.series('html', 'css', 'copy', watch);
 
 // The default task (called when you run `gulp` from cli)
+gulp.task('dev', dev);
+gulp.task('dist', dist);
 gulp.task('default', dev);
