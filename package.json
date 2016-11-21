@@ -31,7 +31,6 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
-    "kss": "^3.0.0-beta.14",
     "merge-stream": "^1.0.0",
     "phantomcss": "^1.0.0",
     "pug": "^2.0.0-alpha8",
@@ -39,7 +38,7 @@
     "stylus": "^0.54.2"
   },
   "description": "Just and one html layout",
-  "homepage": "https://iamempty.github.io/home-agency-style-reen/",
+  "homepage": "https://oure-js.github.io/home-agency-style-reen/",
   "main": "gulpfile.js",
   "scripts": {
     "pretes": "gulp build",

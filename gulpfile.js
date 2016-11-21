@@ -1,6 +1,5 @@
 const gulp = require('gulp'),
   merge = require('merge-stream'),
-  kss = require('kss'),
   plugins = require('gulp-load-plugins')();
 
 const paths = {
@@ -20,8 +19,7 @@ const paths = {
   images: 'img/**/*.{png,jpg}',
   css: 'bower_components/normalize.css/normalize.css',
   dev: '.tmp/',
-  dist: 'dist/',
-  styleGuide: 'styleguide'
+  dist: 'dist/'
 };
 
 function getTask(task) {
@@ -35,29 +33,28 @@ function getTaskCustomDist(task, destination) {
 // Get one .styl file and render
 gulp.task('css', getTask('css'));
 gulp.task('html', getTask('html'));
-gulp.task('minify-css', getTask('minify-css'));
-gulp.task('minify-html', getTask('minify-html'));
+gulp.task('css-min', getTask('css-min'));
+gulp.task('html-min', getTask('html-min'));
 
 // Rerun the task when a file changes
-gulp.task('watch', function() {
+function watch() {
   gulp.watch(paths.stylusWatch, gulp.series('css'));
   gulp.watch(paths.pugWatch, gulp.series('html'));
-});
+}
 
 gulp.task('copy-images', getTaskCustomDist('copy-images', paths.dev));
 gulp.task('copy', gulp.series('copy-images'));
 
-gulp.task('dev', gulp.series('html', 'css', 'copy', 'watch'));
-
-gulp.task('lint-css', gulp.series('dev'), function lintCssTask() {
-  return gulp
-    .src(paths.dev + 'css/*.css')
+gulp.task('lint-css', function lintCssTask() {
+  return gulp.src(paths.dev + 'css/*.css')
     .pipe(plugins.stylelint({
       reporters: [
         {formatter: 'string', console: true}
       ]
     }));
 });
+
+exports.watch = watch;
 
 gulp.task('test', gulp.series('lint-css'));
 
@@ -66,12 +63,14 @@ gulp.task('sprite', getTask('sprite'));
 gulp.task('copy-images-to-dist', getTaskCustomDist('copy-images', paths.dist));
 gulp.task('copy-to-dist', gulp.series('copy-images-to-dist'));
 
-gulp.task('dist', gulp.series('minify-html', 'minify-css', 'copy-to-dist', 'sprite'));
+gulp.task('dist', gulp.series('html-min', 'css-min', 'copy-to-dist', 'sprite'));
 
-gulp.task('deploy', gulp.series('dist', function() {
-  return gulp.src(paths.dist + '**/*')
-    .pipe(ghPages());
-}));
+gulp.task('deploy', gulp.series('dist', () =>
+  gulp.src(paths.dist + '**/*')
+    .pipe(plugins.ghPages())
+));
+
+const dev = gulp.series('html', 'css', 'copy', watch);
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', gulp.series('dev'));
+gulp.task('default', dev);
