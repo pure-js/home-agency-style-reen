@@ -1,6 +1,5 @@
 module.exports = (gulp, plugins, paths) => () =>
   gulp.src(paths.stylus)
-    .pipe(plugins.plumber())
     .pipe(plugins.stylus({
       'include css': true
     }))

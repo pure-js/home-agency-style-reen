@@ -1,5 +1,6 @@
-module.exports = (gulp, plugins, paths, merge) =>
+module.exports = (gulp, plugins, paths) =>
   function () {
+    const merge = require('merge-stream');
     // Generate our spritesheet
     let spriteData = gulp.src('img/previews/*.jpg')
       .pipe(plugins.spritesmith({

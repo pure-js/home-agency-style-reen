@@ -2,7 +2,6 @@ module.exports = (gulp, plugins, paths) =>
   function (done) {
     const fs = require('fs');
     gulp.src(paths.pug)
-      .pipe(plugins.plumber())
       .pipe(plugins.pug())
       // Css from file to inline
       .pipe(plugins.replace(/<link href="css\/above-the-fold.css" rel="stylesheet">/, function(s) {

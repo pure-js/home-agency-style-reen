@@ -12,18 +12,13 @@
   },
   "devDependencies": {
     "del": "^2.2.2",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-cssnano": "^2.1.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.0.1",
-    "gulp-load-plugins": "^1.2.4",
     "gulp-plumber": "^1.0.1",
-    "gulp-pug": "^3.0.3",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-stylelint": "^3.1.0",
-    "gulp-stylus": "^2.3.0",
     "gulp.spritesmith": "^6.2.0",
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
@@ -34,9 +29,7 @@
     "karma-safari-launcher": "^1.0.0",
     "merge-stream": "^1.0.0",
     "phantomcss": "^1.0.0",
-    "pug": "^2.0.0-alpha8",
-    "quixote": "^0.12.2",
-    "stylus": "^0.54.2"
+    "quixote": "^0.12.2"
   },
   "description": "Just and one html layout",
   "homepage": "https://oure-js.github.io/home-agency-style-reen/",
@@ -48,5 +41,12 @@
   "keywords": [
     "pug",
     "stylus"
-  ]
+  ],
+  "dependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-pug": "^3.1.0",
+    "gulp-stylus": "^2.3.0"
+  }
 }
