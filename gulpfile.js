@@ -65,16 +65,16 @@ gulp.task('test', gulp.series('lint-css'));
 gulp.task('sprite', getTask('sprite'));
 
 gulp.task('copy-images-to-dist', getTaskCustomDist('copy-images', paths.dist));
-gulp.task('copy-to-dist', gulp.series('copy-images-to-dist'));
+gulp.task('copy-to-dist', gulp.parallel('copy-images-to-dist'));
 
-const dist = gulp.series('css-min', 'html-min', 'copy-to-dist', 'sprite');
+const dist = gulp.series('css-min', gulp.parallel('html-min', 'copy-to-dist', 'sprite'));
 
 gulp.task('deploy', () =>
   gulp.src(paths.dist + '**/*')
     .pipe(plugins.ghPages())
 );
 
-const dev = gulp.series('html', 'css', 'copy', watch);
+const dev = gulp.parallel('html', 'css', 'copy', watch);
 
 // The default task (called when you run `gulp` from cli)
 gulp.task('dev', dev);
