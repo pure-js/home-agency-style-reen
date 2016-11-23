@@ -13,7 +13,7 @@ Then go to the next step.
 ## Run project
 Go to the project directory
 
-    cd project-directory
+    cd home-agency-style-reen
 
 Run the following commands
 
