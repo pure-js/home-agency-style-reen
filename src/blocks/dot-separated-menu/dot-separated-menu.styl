@@ -2,30 +2,30 @@
   overflow hidden
   margin 0
 
-.dot-separted-menu__item
-  float left
-  display block
-  margin 0 14px 0 0
-  &:last-child
-    padding 0
+  &__item
+    float left
+    display block
+    margin 0 14px 0 0
+    &:last-child
+      padding 0
+      &:after
+        content none
     &:after
-      content none
-  &:after
-    content '.'
-    color #707e8c
-    margin 0 0 0 14px
-    position relative
-    top -3px
+      content '.'
+      color #707e8c
+      margin 0 0 0 14px
+      position relative
+      top -3px
 
-.dot-separted-menu__link
-  font-family 'Source Sans Pro', sans-serif
-  color #707e8c
-  font-size 14px
-  font-weight 400
-  letter-spacing .28px
-  line-height 22px
-  text-align right
-  &:hover
+  &__link
+    font-family 'Source Sans Pro', sans-serif
     color #707e8c
-    text-decoration none
-    opacity .8
+    font-size 14px
+    font-weight 400
+    letter-spacing .28px
+    line-height 22px
+    text-align right
+    &:hover
+      color #707e8c
+      text-decoration none
+      opacity .8

@@ -7,26 +7,26 @@
     content " "
     clear both
 
-.latest-works__column
-  margin 0
-  overflow hidden
-  float left
-  padding 0 5px 0 0
-  &:nth-child(even)
+  &__column
+    margin 0
+    overflow hidden
+    float left
+    padding 0 5px 0 0
+    &:nth-child(even)
+      padding 0
+
+  &__item
+    display block
+    position relative
+    min-height 1px
+    width 125px
+    height 85px
+    padding 0 0 5px 0
+    &:last-child
     padding 0
 
-.latest-works__item
-  display block
-  position relative
-  min-height 1px
-  width 125px
-  height 85px
-  padding 0 0 5px 0
-  &:last-child
-    padding 0
-
-.latest-works__img
-  background-image url($desktop_image)
+  &__img
+    background-image url($desktop_image)
 
 sprite($sprite)
   spritePosition($sprite)
