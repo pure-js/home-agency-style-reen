@@ -14,4 +14,4 @@ And open build/index.html in a browser.
 
 ## For deploy
 
-    gulp deploy
+    npm run deploy
