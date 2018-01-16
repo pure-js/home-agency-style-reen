@@ -30,7 +30,7 @@ html(lang= 'en')
             .col-md-2
               .search
     main
-      .promo-box
+      section.promo-box
         .container
           .row
             .col-md-12
@@ -130,7 +130,10 @@ html(lang= 'en')
         .container
           .row
             .col-md-6
-              p.footer-copyright © 2016 REEN. All rights reserved.
+              p.footer-copyright
+                | ©
+                time 2016
+                | REEN. All rights reserved.
             .col-md-6
               include ../blocks/dot-separated-menu/dot-separated-menu.pug
     link(href= 'css/main.css', rel= 'stylesheet')
