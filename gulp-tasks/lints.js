@@ -4,4 +4,4 @@ module.exports = (gulp, plugins, paths) => () =>
       reporters: [
         {formatter: 'string', console: true}
       ]
-    }))
+    }));

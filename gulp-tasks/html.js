@@ -4,4 +4,4 @@ module.exports = (gulp, plugins, paths) => () =>
     .pipe(plugins.pug({
       pretty: true
     }))
-    .pipe(gulp.dest(paths.dev))
+    .pipe(gulp.dest(paths.dev));
