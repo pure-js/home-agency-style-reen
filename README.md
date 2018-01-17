@@ -5,10 +5,10 @@ Go to the project directory
 
     cd home-agency-style-reen
 
-Run the following commands
+And run the following commands
 
     npm install
-    gulp
+    npm start
 
 And open build/index.html in a browser.
 
