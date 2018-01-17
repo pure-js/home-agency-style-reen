@@ -1,3 +1,17 @@
+.container_menu-and-logo
+  grid-template-areas 'logo' 'menu' 'search'
+  @media (min-width 576px)
+    grid-template-areas 'logo menu search'
+
+.grid-logo
+  grid-area logo
+
+.grid-menu
+  grid-area menu
+
+.grid-search
+  grid-area search
+
 .logotype
   background url('../img/logo.png')
   width 161px
@@ -6,10 +20,12 @@
 
 .top-line
   background #f5f7fb
-  box-shadow 0px 1px 0px 0px #e6e9ed
+  box-shadow 0 1px 0 0 #e6e9ed
 
 .top-nav-box
-  padding 36px 0px
+  padding 6px 0
+  @media (min-width 576px)
+    padding 36px 0
 
 header-text()
   font-family 'Source Sans Pro', sans-serif

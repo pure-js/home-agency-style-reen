@@ -1,21 +1,19 @@
 header
   .top-line
     .container
-      .row
-        .col-md-12
-          span.glyphicon.glyphicon-mail
-          a.header-email(href='mailto:info@reen.com') info@reen.com
-          span.glyphicon.glyphicon-phone
-          a.header-phone(href='tel:1-123-456-7890') +1 (123) 456 78 90
-          .header-social-buttons
+      .grid-col-1
+        span.glyphicon.glyphicon-mail
+        a.header-email(href='mailto:info@reen.com') info@reen.com
+        span.glyphicon.glyphicon-phone
+        a.header-phone(href='tel:1-123-456-7890') +1 (123) 456 78 90
+        .header-social-buttons
   .top-nav-box
-    .container
-      .row
-        .col-xs-12.col-md-2
-          a.logotype(href= '#')
-        .col-xs.col-md-8
-          nav.main-menu
-            each val in ['Home', 'Portfolio', 'Blog', 'Pages', 'Features', 'Mega menu', 'Contact']
-              a.link.main-menu__link.main-menu__item(href= '#')= val
-        .col-md-2
-          .search
+    .container.container_menu-and-logo
+      .grid-logo
+        a.logotype(href= '#')
+      .grid-menu
+        nav.main-menu
+          each val in ['Home', 'Portfolio', 'Blog', 'Pages', 'Features', 'Mega menu', 'Contact']
+            a.link.main-menu__link.main-menu__item(href= '#')= val
+      .grid-search
+        .search

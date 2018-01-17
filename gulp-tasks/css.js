@@ -6,4 +6,4 @@ module.exports = (gulp, plugins, paths) => () =>
       'include css': true
     }))
     .pipe(plugins.sourcemaps.write(''))
-    .pipe(gulp.dest(paths.dev + 'css'))
+    .pipe(gulp.dest(paths.dev + 'css'));
