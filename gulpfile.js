@@ -52,13 +52,9 @@ function watch() {
   gulp.watch(paths.pugWatch, gulp.series('html'));
 }
 
-exports.watch = watch;
-exports.clean = clean;
-
 gulp.task('test', gulp.series('lint-css'));
 
 const sprite = require('./gulp-tasks/sprite');
-exports.sprite = sprite;
 
 gulp.task('copy-images-to-dist', getTask('copy-images', paths.dist));
 gulp.task('copy-to-dist', gulp.parallel('copy-images-to-dist'));
@@ -72,7 +68,10 @@ gulp.task('deploy', () =>
 
 const dev = gulp.parallel('html', 'css', 'copy', watch);
 
-// The default task (called when you run `gulp` from cli)
+exports.watch = watch;
+exports.clean = clean;
+exports.sprite = sprite;
 exports.dev = dev;
 exports.build = build;
+// The default task (called when you run `gulp` from cli)
 exports.default = dev;

@@ -8,27 +8,7 @@ html(lang= 'en')
     link(href= 'css/main.css', rel= 'stylesheet', media=' bogus')
     link(href= 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Lato:700,900', rel='stylesheet', media='bogus')
   body
-    header
-      .top-line
-        .container
-          .row
-            .col-md-12
-              span.glyphicon.glyphicon-mail
-              a.header-email(href='mailto:info@reen.com') info@reen.com
-              span.glyphicon.glyphicon-phone
-              a.header-phone(href='tel:1-123-456-7890') +1 (123) 456 78 90
-              .header-social-buttons
-      .top-nav-box
-        .container
-          .row
-            .col-xs-12.col-md-2
-              a.logotype(href= '#')
-            .col-xs.col-md-8
-              nav.main-menu
-                each val in ['Home', 'Portfolio', 'Blog', 'Pages', 'Features', 'Mega menu', 'Contact']
-                  a.link.main-menu__link.main-menu__item(href= '#')= val
-            .col-md-2
-              .search
+    include ../blocks/header/header
     main
       section.promo-box
         .container

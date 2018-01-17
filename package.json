@@ -30,7 +30,8 @@
     "karma-safari-launcher": "^1.0.0",
     "merge-stream": "^1.0.0",
     "phantomcss": "^1.1.5",
-    "quixote": "^0.12.5"
+    "quixote": "^0.12.5",
+    "vinyl-buffer": "~1.0.1"
   },
   "description": "Just and one html layout",
   "homepage": "https://oure-js.github.io/home-agency-style-reen/",
@@ -39,8 +40,8 @@
     "start": "gulp",
     "build": "gulp build",
     "deploy": "gulp deploy",
-    "test": "gulp test",
-    "sprite": "gulp sprite"
+    "clean": "gulp clean",
+    "test": "gulp test"
   },
   "dependencies": {
     "gulp-cssnano": "^2.1.0",
