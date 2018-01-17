@@ -37,22 +37,11 @@ const clean = () => del([ '.tmp', 'dist', '.publish' ]);
 gulp.task('copy-images', getTask('copy-images'));
 gulp.task('copy', gulp.series('copy-images'));
 
-gulp.task('lint-css', function lintCssTask() {
-  return gulp.src(paths.dev + 'css/*.css')
-    .pipe(plugins.stylelint({
-      reporters: [
-        {formatter: 'string', console: true}
-      ]
-    }));
-});
-
 // Rerun the task when a file changes
 function watch() {
   gulp.watch(paths.stylusWatch, gulp.series('css'));
   gulp.watch(paths.pugWatch, gulp.series('html'));
 }
-
-gulp.task('test', gulp.series('lint-css'));
 
 const sprite = require('./gulp-tasks/sprite');
 
@@ -61,10 +50,9 @@ gulp.task('copy-to-dist', gulp.parallel('copy-images-to-dist'));
 
 const build = gulp.series('css-min', gulp.parallel('html-min', 'copy-to-dist', sprite));
 
-gulp.task('deploy', () =>
+const deploy = () =>
   gulp.src(paths.dist + '**/*')
-    .pipe(plugins.ghPages())
-);
+    .pipe(plugins.ghPages());
 
 const dev = gulp.parallel('html', 'css', 'copy', watch);
 
@@ -73,5 +61,6 @@ exports.clean = clean;
 exports.sprite = sprite;
 exports.dev = dev;
 exports.build = build;
+exports.deploy = deploy;
 // The default task (called when you run `gulp` from cli)
 exports.default = dev;

@@ -1,12 +1,13 @@
 .container
-  width 1170px
-  padding-right 15px
-  padding-left 15px
+  display grid
+  width 100%
+  grid-gap 15px
+  //justify-content center
   margin 0 auto
-  &:before,
-  &:after
-    display table
-    content ' '
-    clear both
+  @media (min-width 576px)
+    width 1170px
+
+//.grid-col-1
+
 
 grid(12, 15px)
