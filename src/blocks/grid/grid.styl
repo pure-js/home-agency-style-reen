@@ -2,12 +2,16 @@
   display grid
   width 100%
   grid-gap 15px
-  //justify-content center
   margin 0 auto
   @media (min-width 576px)
     width 1170px
 
-//.grid-col-1
+.container_4-equal
+  grid-template-columns repeat(4)
+  grid-template-areas 'a a a a'
 
+.container_2-equal
+  grid-template-columns repeat(2)
+  grid-template-areas 'a a'
 
 grid(12, 15px)
