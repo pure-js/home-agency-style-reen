@@ -21,22 +21,15 @@
     "gulp-plumber": "^1.0.1",
     "gulp-pug": "~3.3.0",
     "gulp-replace": "~0.6.1",
-    "gulp-sourcemaps": "^2.6.0",
+    "gulp-sourcemaps": "~2.6.4",
     "gulp-stylus": "~2.7.0",
     "gulp.spritesmith": "^6.5.0",
-    "jasmine": "~2.9.0",
-    "jasmine-core": "~2.9.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-safari-launcher": "^1.0.0",
     "merge-stream": "^1.0.0",
-    "phantomcss": "^1.1.5",
     "vinyl-buffer": "~1.0.1"
   },
   "description": "Just and one html layout",
   "homepage": "https://oure-js.github.io/home-agency-style-reen/",
-  "main": "gulpfile.js",
+  "main": "js/base.js",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
@@ -47,5 +40,9 @@
   "dependencies": {
     "normalize.css": "~7.0.0",
     "stylus-grid-constructor": "~2.1.0"
-  }
+  },
+  "keywords": [
+    "html",
+    "layout"
+  ]
 }
