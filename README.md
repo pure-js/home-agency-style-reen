@@ -1,6 +1,6 @@
 # Home agency style Reen
 
-## Run project
+## Contribution
 Go to the project directory
 
     cd home-agency-style-reen
