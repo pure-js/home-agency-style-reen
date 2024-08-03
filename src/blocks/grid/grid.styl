@@ -1,3 +1,50 @@
+$default-amount = 12
+$default-padding = 15px
+$default-suffixes = 'col-xs', 'col-sm', 'col-md', 'col-lg', 'col-xl'
+$default-breakpoints = 576px, 768px, 992px, 1200px
+$default-row-postfix = ''
+
+grid(
+  $amount = $default-amount,
+  $padding = $default-padding,
+  $suffixes = $default-suffixes,
+  $breakpoints = $default-breakpoints,
+  $row-postfix = $default-row-postfix)
+
+  $breakpoints-length = length($breakpoints) + 1
+
+  columns-for-breakpoint()
+    for $j in (1..$amount)
+      $selector = '.' + $suffixes[$i - 1] + '-' + $j
+      {$selector}
+        width (100% / $amount * $j)
+      $list = join(', ', $list, $selector)
+    {$list}
+      padding-right $padding
+      padding-left $padding
+      position relative
+      min-height 1px
+      float left
+      box-sizing border-box
+
+  for $i in (1..$breakpoints-length)
+
+    if $i == 1
+      columns-for-breakpoint()
+    else
+      @media screen and (min-width: $breakpoints[$i - 2])
+        columns-for-breakpoint()
+
+  $row = '.row' + $row-postfix
+  {$row}
+    margin-right -($padding)
+    margin-left -($padding)
+    &:before,
+    &:after
+      display table
+      content " "
+      clear both
+
 .container
   display grid
   width 100%
